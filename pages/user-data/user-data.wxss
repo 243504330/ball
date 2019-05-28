@@ -1,0 +1,47 @@
+page{
+  background: #f9f9f9;
+}
+button{
+  width:70%;border-radius:100rpx;font-size:32rpx;margin-top:20rpx;
+  border:none;
+}
+.act-btn{
+  background: #FF7171;
+  box-shadow: 0 3px 5px 0 rgba(255,113,113,0.30);
+  color:#ffffff;
+}
+.def-btn{
+  background: #E2E6EE;
+  box-shadow: 0 3px 5px 0 rgba(226,230,238,0.30);
+  color:#aaaaaa;
+}
+button::after {
+  border: none;
+}
+.button-hover{
+  color:rgba(255, 255, 255, 0.8);
+  background-color:rgba(0, 0, 0, 0);
+  border:none;
+  color:#000000;
+}
+.wbb{
+  display:flex;border-bottom:1px solid #e5e5e5;padding-bottom:25rpx;margin-bottom:45rpx;
+}
+.waa{
+  width:40%;color:#8989a0;line-height:50rpx;
+}
+.wimg{
+  width:50rpx;height:50rpx;position:absolute;
+}
+.wleft{
+  padding-left:70rpx;
+}
+.wzhong{
+  width:50%;text-align:right;color:#393945;line-height:50rpx;
+}
+.wright{
+  width:10%;text-align:right;color:#393945;line-height:50rpx;
+}
+.simg{
+  width:8rpx;height:14rpx;
+}

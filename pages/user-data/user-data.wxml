@@ -1,0 +1,112 @@
+<view style='display:flex;text-align:center;padding-top:60rpx;padding-bottom:40rpx;'>
+  <view style='width:50%;'>
+    <image bindtap='sexChose' id="B" wx:if="{{sex == 'B'}}" style='width:140rpx;height:140rpx;' src="/img/act_boy.png"></image>
+    <image bindtap='sexChose' id="B" wx:else style='width:140rpx;height:140rpx;' src="/img/def_boy.png"></image>
+  </view>
+  <view style='width:50%;'>
+    <image bindtap='sexChose' id="G" wx:if="{{sex == 'G'}}" style='width:140rpx;height:140rpx;' src="/img/act_girl.png"></image>
+    <image bindtap='sexChose' id="G" wx:else style='width:140rpx;height:140rpx;' src="/img/def_girl.png"></image>
+  </view>
+</view>
+<view style='margin-left:80rpx;margin-right:80rpx;font-size:32rpx;padding-top:40rpx;'>
+  <view class='wbb'>
+    <view class='waa'>
+      <image class='wimg' src="/img/shengao.png"></image>
+      <span class="wleft">身高</span>
+    </view>
+    <view class='wzhong'>
+      <input type="number" value='' maxlength="3" bindinput="shengao" value="{{shengao}}" style='line-height:50rpx;'></input>
+      
+    </view>
+    <view class='wright'>
+      <span>cm</span>
+    </view>
+  </view>
+  <view class='wbb'>
+    <view class='waa'>
+      <image class='wimg' src="/img/age.png"></image>
+      <span class="wleft">年龄</span>
+    </view>
+    <view class='wzhong'>
+       <input type="number" maxlength="3" value='' bindinput="age" value="{{age}}"></input>
+    </view>
+    <view class='wright'>
+      <span>岁</span>
+    </view>
+  </view>
+   <view class='wbb'>
+    <view class='waa'>
+      <image class='wimg' src="/img/tizhong.png"></image>
+      <span class="wleft">体重</span>
+    </view>
+    <view class='wzhong'>
+       <input type="digit" value='' maxlength="4" bindinput="tizhong" style='line-height:50rpx;padding-top:4rpx;' value="{{tizhong}}"></input>
+    </view>
+    <view class='wright'>
+      <span>kg</span>
+    </view>
+  </view>
+   <view class='wbb' bindtap='zhouqiClick'>
+    <view class='waa'>
+      <image class='wimg' src="/img/zhouqi.png"></image>
+      <span class="wleft">打球周期</span>
+    </view>
+    <view class='wzhong'>
+      {{zhouqi}}
+    </view>
+    <view class='wright'>
+     <image class='simg' src="/img/other_right.png"></image>
+    </view>
+  </view>
+  <view class='wbb' bindtap='weizhiClick'>
+    <view class='waa'>
+      <image class='wimg' src="/img/weizhi.png"></image>
+      <span class="wleft">打球位置</span>
+    </view>
+    <view class='wzhong'>
+      {{weizhi}}
+    </view>
+    <view class='wright'>
+     <image class='simg' src="/img/other_right.png"></image>
+    </view>
+  </view>
+  <view class='wbb' bindtap='levelClick'>
+    <view class='waa'>
+      <image class='wimg' src="/img/level.png"></image>
+      <span class="wleft">等级</span>
+    </view>
+    <view class='wzhong'>
+      {{level}}
+    </view>
+    <view class='wright'>
+     <image class='simg' src="/img/other_right.png"></image>
+    </view>
+  </view>
+</view>
+<view style='padding-top:20rpx;margin-bottom:40rpx;'>
+  <button wx:if="{{btnFlag == true}}" bindtap='sub' class='act-btn'>保存资料</button>
+  <button wx:else class='def-btn'>保存资料</button>
+</view>
+<view style='display:{{picker}};'>
+  <view style='display:flex;position:fixed;width:100%;background:#ffffff;z-index:99999999;bottom:300px;height:40px;border-bottom:1px solid #e5e5e5;line-height:40px;border-top:1px solid #e5e5e5;'>
+    <view bindtap='cancel' style='width:50%;padding-left:30rpx;'>取消</view>
+    <view bindtap='down' style='width:50%;text-align:right;padding-right:30rpx;'>完成</view>
+  </view>
+  <picker-view
+    indicator-style="height: 50px;"
+    style="width: 100%; height: 300px;position:fixed;bottom:0;background:#ffffff;text-align:center;"
+    value="{{value}}"
+    bindchange="bindChange"
+  >  
+
+    <picker-view-column>
+      <view wx:for="{{sheng}}" wx:for-item="item" style="line-height: 50px">{{item.province}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{shi}}"  wx:for-item="item" style="line-height: 50px">{{item.city}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{qu}}"  wx:for-item="item" style="line-height: 50px">{{item.area}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>

@@ -1,0 +1,2 @@
+<rich-text wx:if="{{nodes != ''}}" nodes="{{nodes}}" bindtap="tap"></rich-text>
+<web-view wx:if="{{url != ''}}" src="{{url}}"></web-view>

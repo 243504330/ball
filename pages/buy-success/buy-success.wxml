@@ -1,0 +1,14 @@
+
+      <view style='text-align:center;'>
+          <view style='padding-top:112rpx;'>
+            <image style='width:170rpx;height:170rpx;' src="/img/yd_success.png"></image>
+          </view>
+          <view class="bf">
+            {{title}}
+          </view>
+          <view class="che">
+            {{name}}
+          </view>
+          <button  wx:if="{{ptBtn == true}}" bindtap='goOrder' class="yao" style='width:90%;border-radius:100rpx;font-size:32rpx;margin-top:20rpx;line-height:2.8;' hover-class="other-button-hover">邀请好友组队</button>
+         <button  wx:if="{{back == true}}" bindtap='backIndex' style='width:90%;border-radius:100rpx;font-size:32rpx;margin-top:30rpx; border: 1px solid rgb(199, 199, 210);color:#8989A0;background:#ffffff;' hover-class="other-button-hover">返回首页</button>
+      </view>

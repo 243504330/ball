@@ -1,0 +1,263 @@
+
+<view style='position:fixed;width:100%;height:200px;background:linear-gradient(#262634, #ffffff);z-index:-1;margin-top:-20px;'>
+  
+</view>
+<view  bindtap='close' style='position:fixed;background:rgba(0,0,0,0.50);z-index:999;width:100%;height:100%;display:{{userInfo}};margin-top:-20rpx;'>
+</view>
+  <view animation="{{userInfoAni}}" style='position:fixed;width:85%;height:680rpx;top:0;bottom:0;left:0;right:0;margin:auto;background:#ffffff;border-radius:8rpx;z-index:9999;display:{{userInfo}};'>
+    <view style='padding:40rpx;padding-top:55rpx;'>
+      <view style='height:110rpx;'>
+        <image style='width:110rpx;height:110rpx;border-radius:100rpx;border:3px solid rgba(255,255,255,0.50);position:absolute;' src="{{pub_url}}{{clickInfo.photo}}"></image>
+        <view style='padding-left:140rpx;'>
+          <view style='position:relative;'>
+              <span style="color:#393945;font-weight:600;font-size:36rpx;">{{clickInfo.nickName}}</span>
+              <image wx:if="{{clickInfo.gender == 'B'}}" style="position:absolute;margin:auto;padding-left:20rpx;width:36rpx;height:36rpx;padding-top:10rpx;" src="/img/boy.png"></image>
+              <image wx:else style="position:absolute;margin:auto;padding-left:20rpx;width:36rpx;height:36rpx;padding-top:10rpx;" src="/img/girl.png"></image>
+            </view>
+        </view>
+      </view>
+    </view>
+    <view style='text-align:center;color:#393945;font-size:26rpx;padding-top:30rpx;padding-bottom:40rpx;'>
+      <view style='display:flex;line-height:2;'>
+        <view style='width:33.33%'>
+          <view>
+            <image style='width:44rpx;height:44rpx;' src="/img/shengao.png"></image>
+            <view>
+              <span wx:if="{{clickInfo.height != ''}}">{{clickInfo.height}}cm</span>
+              <span wx:else>-</span>
+            </view>
+          </view>
+        </view>
+        <view style='width:33.33%'>
+          <view>
+            <image style='width:44rpx;height:44rpx;' src="/img/age.png"></image>
+            <view>
+              <span wx:if="{{clickInfo.age != ''}}">{{clickInfo.age}}岁</span>
+              <span wx:else>-</span>
+            </view>
+          </view>
+        </view>
+        <view style='width:33.33%'>
+          <view>
+            <image style='width:44rpx;height:44rpx;' src="/img/tizhong.png"></image>
+            <view>
+              <span wx:if="{{clickInfo.weight != ''}}">{{clickInfo.weight}}kg</span>
+              <span wx:else>-</span>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view style='display:flex;padding-top:40rpx;line-height:2;'>
+        <view style='width:33.33%'>
+          <view>
+            <image style='width:44rpx;height:44rpx;' src="/img/zhouqi.png"></image>
+            <view>
+              <span wx:if="{{clickInfo.frequency != ''}}">{{clickInfo.frequency}}</span>
+              <span wx:else>-</span>
+            </view>
+          </view>
+        </view>
+        <view style='width:33.33%'>
+          <view>
+            <image style='width:44rpx;height:44rpx;' src="/img/weizhi.png"></image>
+            <view>
+              <span wx:if="{{clickInfo.position != ''}}">{{clickInfo.position}}</span>
+              <span wx:else>-</span>
+            </view>
+          </view>
+        </view>
+        <view style='width:33.33%'>
+          <view>
+            <image style='width:44rpx;height:44rpx;' src="/img/level.png"></image>
+            <view>
+              <span wx:if="{{clickInfo.level != ''}}">{{clickInfo.level}}</span>
+              <span wx:else>-</span>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view>
+        <button bindtap='close' class="close" style='width:40%;border-radius:100rpx;font-size:32rpx;margin-top:20rpx;'  hover-class="other-button-hover">关闭</button>
+    </view>
+  </view>
+
+<view style='position:fixed;background:rgba(0,0,0,0.50);z-index:999;width:100%;height:110%;display:{{success}};margin-top:-30rpx;'>
+  <view wx:if="{{showType == 'success'}}" style='position:absolute;width:270rpx;height:260rpx;top:0;bottom:0;left:0;right:0;margin:auto;background:#ffffff;border-radius:8rpx;text-align:center;'  animation="{{animationData}}">
+      <image style='width:90rpx;height:90rpx;padding-top:20%;' src="/img/success.png"></image>
+      <view style='font-size:32rpx;color:#333333;padding-top:10rpx;'>
+        加入成功
+      </view>
+  </view>
+   <view wx:else style='position:absolute;width:70%;height:340rpx;top:0;bottom:0;left:0;right:0;margin:auto;background:#ffffff;border-radius:8rpx;text-align:center;'  animation="{{animationData}}">
+      <view style='font-size:36rpx;font-weight:600;color:#333333;padding-top:40rpx;padding-bottom:30rpx;'>提示</view>
+      <view style='font-size:30rpx;color:#666666;font-weight:600;padding-bottom:40rpx;'>当前订单已结束</view>
+      <view>
+        <button class="get-back" bindtap='getBack' hover-class="other-button-hover">返回首页</button>
+      </view>
+  </view>
+</view>
+<view style='margin-left:10rpx;margin-right:10rpx;border-radius:16rpx;background:#ffffff;margin-top:18rpx;'>
+  <view style='padding-left:30rpx;padding-right:30rpx;padding-top:40rpx;padding-bottom:40rpx;font-weight:600;'>
+    <image style='width:46rpx;height:40rpx;color:#393945;' src="/img/yd_time.png"></image>
+    <span style="font-size:56rpx;padding-left:20rpx;padding-right:20rpx;">
+      {{day}}
+    </span>
+    <span style="font-size:40rpx;">
+      {{time}}
+    </span>
+  </view>
+  <view style=''>
+    <view style='display:flex;padding-left:30rpx;padding-right:30rpx;position:relative;'>
+      <view style='position:absolute;width:1px;height:80%;background:#f2f2f2;left:0;right:0;margin:auto;top:4%;'></view>
+      <view style='width:50%;'>
+        <view class='l-pl'>
+          <image class='pimg' bindtap='userClick' id="{{info.images[0].id}}" src="{{pub_url}}{{info.images[0].photo}}"></image>
+        </view>
+        <view class='l-pl'>
+           <image bindtap='userClick' wx:if="{{!lockList[1]}}" class='pimg' src="/img/emp_peo.png"></image>
+           <image wx:if="{{lockList[1] == '0a'}}" class='pimg' src="/img/yuan.png"></image>
+           <image bindtap='unlock'  wx:if="{{lockList[1] == '0a'}}" class='l-lock' src="/img/lock.png"></image>
+           <image wx:if="{{lockList[1].photo}}" bindtap='userClick' id="{{lockList[1].id}}" class='pimg' src="{{pub_url}}{{lockList[1].photo}}"></image>
+        </view>
+        <view class='l-pl'>
+           <image wx:if="{{lockList[2] == 1}}" class='pimg' src="/img/yuan.png"></image>
+           <image bindtap='unlock'  wx:if="{{lockList[2] == 1}}" class='l-lock' src="/img/lock.png"></image>
+           <image wx:if="{{lockList[2].photo}}"  bindtap='userClick' id="{{lockList[2].id}}" class='pimg' src="{{pub_url}}{{lockList[2].photo}}"></image>
+           <image wx:if="{{!lockList[2]}}" class='pimg' src="/img/emp_peo.png"></image>
+        </view>
+      </view>
+      <view style='width:50%;'>
+        <view class='r-pl'>
+          <image wx:if="{{lockList[5] == 4}}" class='pimg' src="/img/yuan.png"></image>
+           <image bindtap='unlock'  wx:if="{{lockList[5] == 4}}" class='l-lock' src="/img/lock.png"></image>
+           <image wx:if="{{lockList[5].photo}}"  bindtap='userClick' id="{{lockList[5].id}}" class='pimg' src="{{pub_url}}{{lockList[5].photo}}"></image>
+           <image wx:if="{{!lockList[5]}}" class='pimg' src="/img/emp_peo.png"></image>
+        </view>
+        <view class='r-pl'>
+           <image wx:if="{{lockList[4] == 3}}" class='pimg' src="/img/yuan.png"></image>
+           <image bindtap='unlock'  wx:if="{{lockList[4] == 3}}" class='l-lock' src="/img/lock.png"></image>
+           <image wx:if="{{lockList[4].photo}}" bindtap='userClick' id="{{lockList[4].id}}" class='pimg' src="{{pub_url}}{{lockList[4].photo}}"></image>
+           <image wx:if="{{!lockList[4]}}" class='pimg' src="/img/emp_peo.png"></image>
+        </view>
+        <view class='r-pl'>
+           <image wx:if="{{lockList[3] == 2}}" class='pimg' src="/img/yuan.png"></image>
+           <image bindtap='unlock'  wx:if="{{lockList[3] == 2}}" class='l-lock' src="/img/lock.png"></image>
+           <image wx:if="{{lockList[3].photo}}" bindtap='userClick' id="{{lockList[3].id}}" class='pimg' src="{{pub_url}}{{lockList[3].photo}}"></image>
+           <image wx:if="{{!lockList[3]}}" class='pimg' src="/img/emp_peo.png"></image>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{info.actualNum > 6}}" style='display:flex;padding-left:30rpx;padding-right:30rpx;position:relative;padding-top:30rpx;'>
+      <view style='position:absolute;width:1px;height:80%;background:#f2f2f2;left:0;right:0;margin:auto;top:4%;'></view>
+      <view wx:if="{{info.actualNum > 6}}" style='width:50%;'>
+        <view class='l-pl'>
+         <image wx:if="{{lockList[6].photo}}" bindtap='userClick' id="{{lockList[6].id}}" class='pimg' src="{{pub_url}}{{lockList[6].photo}}"></image>
+         <image wx:else class='pimg' src="/img/emp_peo.png"></image>
+        </view>
+        <view class='l-pl'>
+          <image wx:if="{{lockList[7].photo}}" bindtap='userClick' id="{{lockList[7].id}}" class='pimg' src="{{pub_url}}{{lockList[7].photo}}"></image>
+          <image wx:else class='pimg' src="/img/emp_peo.png"></image>
+        </view>
+        <view class='l-pl'>
+          <image wx:if="{{lockList[8].photo}}" bindtap='userClick' id="{{lockList[8].id}}" class='pimg' src="{{pub_url}}{{lockList[8].photo}}"></image>
+          <image wx:else class='pimg' src="/img/emp_peo.png"></image>
+        </view>
+      </view>
+      <view wx:if="{{info.actualNum > 9}}" style='width:50%;'>
+        <view class='r-pl'>
+          <image wx:if="{{lockList[11].photo}}" bindtap='userClick' id="{{lockList[11].id}}" class='pimg' src="{{pub_url}}{{lockList[11].photo}}"></image>
+         <image wx:else class='pimg' src="/img/emp_peo.png"></image>
+        </view>
+        <view class='r-pl'>
+          <image wx:if="{{lockList[10].photo}}" bindtap='userClick' id="{{lockList[10].id}}" class='pimg' src="{{pub_url}}{{lockList[10].photo}}"></image>
+         <image wx:else class='pimg' src="/img/emp_peo.png"></image>
+        </view>
+        <view class='r-pl'>
+          <image wx:if="{{lockList[9].photo}}" bindtap='userClick' id="{{lockList[9].id}}" class='pimg' src="{{pub_url}}{{lockList[9].photo}}"></image>
+         <image wx:else class='pimg' src="/img/emp_peo.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{info.teamCode != '' && info.isInJoin == 'Y' }}" style='font-size:36rpx;color:#393945;padding-left:30rpx;padding-right:30rpx;font-weight:600;padding-top:60rpx;'>
+    组队暗号
+    <view style='font-size:120rpx;text-align:center;'>
+      {{info.teamCode}}
+    </view>
+  </view>
+  <view style='margin-left:30rpx;margin-right:30rpx;font-size:28rpx;margin-top:60rpx;'>
+    <view class='line-box'>
+      <view class='line-left'>
+        <view style=''>
+          场地
+        </view>
+      </view>
+      <view class='line-right'>
+        <view style=''>
+          {{info.stadiumPlace}}
+        </view>
+      </view>
+    </view>
+    <view class='line-box'>
+      <view class='line-left'>
+        <view style=''>
+          地址
+        </view>
+      </view>
+      <view class='line-right'>
+        <view style=''>
+          {{info.address}}
+        </view>
+      </view>
+    </view>
+    <view class='line-box'>
+      <view class='line-left'>
+        <view style=''>
+          <span wx:if="{{info.isInJoin == 'Y'}}">已付</span>
+          <span wx:else>费用</span>
+        </view>
+      </view>
+      <view class='line-right'>
+        <view style='color:#ff7171;'>
+          {{info.priceDes}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{userId == ''}}" style='display:flex;margin-bottom:40rpx;'>
+  <view style='width:100%'>
+     <button  wx:if="{{type == 'wx'}}"  open-type="getUserInfo" class="yao" bindgetuserinfo="bindGetUserInfo" style='width:75%;border-radius:100rpx;font-size:32rpx;margin-top:20rpx;'>微信授权</button>
+     <button  wx:if="{{type == 'phone'}}"  class="yao" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style='width:75%;border-radius:100rpx;font-size:32rpx;margin-top:20rpx;'>登录后加入队伍</button>
+  </view>
+</view>
+<view wx:else>
+  <view wx:if="{{info.isOriginator == 'Y' && info.isLock == 'N'}}" style='display:flex;margin-bottom:40rpx;'>
+    <button wx:if="{{info.actualNum == info.actualSize || info.status == 'failed' || info.status == 'finished'}}" class="join" style='background: #E2E6EE;box-shadow: 0 3px 5px 0 rgba(226,230,238,0.30);color:#aaaaaa;;' hover-class="other-button-hover">邀请好友组队</button>
+        <button open-type="share" wx:else  app-parameter="wechat" binderror="share" class="yao" style='width:75%;border-radius:100rpx;font-size:32rpx;margin-top:20rpx;' hover-class="other-button-hover">邀请好友组队</button>
+  </view>
+  <view wx:else style='display:flex;margin-bottom:40rpx;'>
+    <view style='width:50%;'>
+      <button wx:if="{{info.actualNum == info.actualSize || info.status == 'failed' || info.status == 'finished'}}" class="join" style='background: #E2E6EE;box-shadow: 0 3px 5px 0 rgba(226,230,238,0.30);color:#aaaaaa;;' hover-class="other-button-hover">邀请好友组队</button>
+      <button open-type="share" wx:else  app-parameter="wechat" binderror="share" class="yao" style='width:75%;border-radius:100rpx;font-size:32rpx;margin-top:20rpx;' hover-class="other-button-hover">邀请好友组队</button>
+    </view>
+    <view style='width:50%;'>
+      <view wx:if="{{info.isOriginator == 'Y' }}">
+        <button  wx:if="{{info.lockNum == 0 || info.status == 'failed' || info.status == 'finished'}}" class="join" style='background: #E2E6EE;box-shadow: 0 3px 5px 0 rgba(226,230,238,0.30);color:#aaaaaa;'  hover-class="other-button-hover">锁位已满</button>
+        <button open-type="share" id="lock" wx:else class="join"  hover-class="other-button-hover">锁位邀请</button>
+      </view>
+      <view wx:else>
+        <view wx:if="{{info.isInJoin == 'Y'}}">
+          <button class="join" style='background: #E2E6EE;box-shadow: 0 3px 5px 0 rgba(226,230,238,0.30);color:#aaaaaa;'  hover-class="other-button-hover">已加入</button>
+        </view>
+        <view wx:else>
+          <button wx:if="{{info.actualNum == info.actualSize || info.status == 'failed' || info.status == 'finished'}}" class="join" style='background: #E2E6EE;box-shadow: 0 3px 5px 0 rgba(226,230,238,0.30);color:#aaaaaa;'  hover-class="other-button-hover">加入队伍</button>
+          <form  wx:else bindsubmit="formSubmit" report-submit bindreset="formReset">
+            <button form-type='submit' class="join"   hover-class="other-button-hover">加入队伍</button>
+          </form>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

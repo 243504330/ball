@@ -1,0 +1,19 @@
+/**app.wxss**/
+.pub-border{
+  width:130rpx;
+  height:130rpx;
+  position:absolute;
+  top:0;
+  border:3px solid rgba(255,255,255,0.40);
+  box-sizing:border-box;
+  border-radius:100rpx;
+}
+.pub-border-sm{
+  width:80rpx;
+  height:80rpx;
+  position:absolute;
+  top:0;
+  border:4rpx solid rgba(232,232,232,0.68);
+  box-sizing:border-box;
+  border-radius:100rpx;
+}

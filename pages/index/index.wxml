@@ -1,0 +1,129 @@
+<view style='position:relative;'>
+  <swiper  wx:if="{{bannerList == ''}}" bindchange="bindBanner" circular="{{autoplay}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="200" style='margin-left:30rpx;margin-right:30rpx;border-radius:8rpx;margin-top:30rpx;height:{{windowWidth / 2.51}}px;' >
+
+  </swiper>
+  <swiper wx:else bindchange="bindBanner" circular="{{autoplay}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="200" style='margin-left:30rpx;margin-right:30rpx;border-radius:8rpx;margin-top:30rpx;box-shadow:0 2px 15px 5px rgba(0,0,0,0.20);background:rgba(0,0,0,0.20);height:{{windowWidth / 2.51}}px;border-radius:8rpx;' >
+    <block wx:for="{{bannerList}}" wx:for-index="idx" wx:for-item="item">
+      <swiper-item style="border-radius:8rpx;" bindtap="bannerDetail" data-avid="{{item.id}}" id="{{idx}}" >
+        <image src="{{pub_url}}/{{item.picpath}}" class="slide-image" style='width:{{windowWidth}}px;height:{{windowWidth / 2.51}}px;' />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view style='position:absolute;z-index:999;left:0;right:0;margin:auto;bottom:20rpx;width:{{bannerList.length * 42}}rpx;top:{{windowWidth / 2.71}}px;'>
+        <view wx:for="{{bannerList}}" wx:if="{{bannerList.length > 1}}" wx:for-index="idx" class="{{idx == bannerPage ? 'def-banner' : 'act-banner'}}"></view>
+  </view>
+</view>
+<view style='margin:50rpx 30rpx 30rpx 30rpx;display:flex;'>
+  <view style='width:50%;color: #393945;letter-spacing: 0;font-size:36rpx;font-weight:600;'>
+    球场信息
+  </view>
+  <view bindtap='locationRes' style='width:50%;color:#656F8E;font-size:26rpx;text-align:right;position:relative;'>
+          <view style='color:#656F8E;font-size:13px;text-align:right;padding-right:15px;position:relative'>
+            <span style="vertical-align:middle;">重新定位</span>
+             <image style='width:12rpx;height:20rpx;position:absolute;right:15px;top:0;bottom:0;margin:auto;right:0;' src="/img/btn_right.png"></image>
+          </view>
+  </view>
+</view>
+<view style=''>
+
+<scroll-view scroll-x="{{scroll}}" class='scroll_box' style=''>
+<view wx:for="{{ballList}}" wx:for-item="item"  wx:for-index="idx"  style="margin-right:{{ballList.length == idx + 1 ? 30 : 0}}rpx;" class="{{idx == id ? 'is-chose' : 'un-chose'}}">
+      <block>
+    <view style="height:1220rpx;">
+      <view bindtap='goPlace' id="{{item.stadium.id}}" style="background:#ffffff;padding:30rpx;border-radius:16rpx; box-shadow: 0 5px 10px 0 rgba(0,0,0,0.10);">
+        <view style='font-size:40rpx;color:#393945;font-weight:600;height:60rpx;'>
+          {{item.stadium.name}}
+        </view>
+        <view style='position:relative;margin-bottom:30rpx;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;'>
+          <image style='width:22rpx;height:28rpx;position:absolute;top:0;bottom:0;margin:auto;left:0rpx;padding-top:8rpx;' src="/img/point.png"></image>
+          <span style="color:#8989A0;font-size:26rpx;padding-left:36rpx;">{{item.stadium.address}}</span> 
+        </view>
+        <view>
+           <image style='width:100%;;height:{{(windowWidth -90 -30) / 2.510}}px;border-radius:6rpx;' src="{{pub_url}}{{item.stadium.image}}"></image>
+        </view>
+        <view style='display:flex;height:140rpx;font-size:26rpx;text-align:center;'>
+          <view style='width:50%;padding-top:30rpx;'>
+            <view style='color:#5b5b6e;'>
+              距离
+            </view>
+            <view style='color:#393945;padding-top:10rpx;font-weight:600;'>
+                
+                <span wx:if="{{item.distance == ''}}">--</span>
+                <span wx:else>{{item.distance}}m</span>
+            </view>
+          </view>
+         <view style='width:50%;padding-top:30rpx;'>
+            <view style='color:#5b5b6e;'>
+              场地费
+            </view>
+            <view style='color:#393945;padding-top:10rpx;font-weight:600;'>
+                {{item.siteFees}}
+            </view>
+          </view>
+        </view>
+        <view style='height:30rpx;font-size:26rpx;color:#393945;font-weight:600;padding-top:10rpx;padding-bottom:20rpx;'>
+          已预订用户
+        </view>
+        <view style='height:130rpx;border-bottom:1px solid #f9f9f9;'>
+          <view style='padding-top:20rpx;position:relative;'>
+            <view style='display:flex;'>
+              <view style='width:80%;'>
+                <view style='width:440rpx;height: 85rpx;white-space:nowrap; text-overflow:ellipsis; overflow:hidden;position:relative;'>
+                  <image wx:for="{{item.images}}" wx:for-index="idx" wx:for-item="item" id="{{idx}}" class="{{idx == 0 ? '' : 'tpx'}}" style='width:70rpx;height:70rpx;border-radius:100rpx;float:left;border:3px solid rgba(255,255,255,0.50);' src="{{pub_url}}{{item}}"></image>
+                  <view wx:if="{{item.pepoleNum > 6}}" style='width:80rpx;height:80rpx;border-radius:50rpx;position:absolute;right:{{440 - 70 * 5.7}}rpx;background:linear-gradient(to right, rgba(255, 255, 255, 0) ,rgba(255, 255, 255, 1));'></view>
+                </view>
+              </view>
+              <view style='width:20%;font-size:26rpx;color:#5b5b6e;line-height:80rpx;text-align:right;'>
+              {{item.pepoleNum}}人
+              </view>
+            </view>
+          </view>
+        </view>
+        <view style='height:30rpx;font-size:26rpx;color:#393945;font-weight:600;padding-top:30rpx;padding-bottom:20rpx;'>
+          球场简介
+        </view>
+        <view style='height:30rpx;font-size:26rpx;color:#393945;'>
+          <view style='display:flex;font-size:26rpx;color:#5b5b6e;padding-top:10rpx;padding-bottom:20rpx;'>
+            <view style='width:80%;'>
+              球场数量（单位：半场）：
+            </view>
+            <view style='width:20%;text-align:right;'>
+              {{item.stadium.quantity}}个
+            </view>
+          </view>
+        </view>
+        <view style='height:120rpx;padding-top:70rpx;padding-bottom:30rpx;'>
+          <button bindtap="setDisabled" style='width:55%;border-radius:100rpx;font-size:32rpx;margin-top:20rpx;'>我要打球</button>
+        </view>
+      </view>
+    </view>
+
+  </block>
+</view>
+
+</scroll-view>
+
+<swiper bindchange="changeS" autoplay="{{autoplay}}" circular="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='border-radius:8rpx;padding-top:30rpx;height:1220rpx;display:none;' next-margin="{{nMargin}}px" previous-margin="{{pMargin}}px" >
+
+</swiper>
+</view>
+<view wx:if="{{msgList != ''}}" style='height:80rpx;background:#ffffff;position:fixed;bottom:0;width:100%;border-bottom:1px solid #f9f9f9;border-top:1px solid #f9f9f9;box-shadow:0px 0px 20px 0 rgba(0,0,0,0.10);'>
+<swiper autoplay="{{autoplay}}" circular="{{autoplay}}" interval="{{interval}}" vertical="{{autoplay}}" duration="{{duration}}" >
+  <block wx:for="{{msgList}}" wx:for-item="item" >
+    <swiper-item id="{{item.orderId}}" bindtap="qianwang" >
+      
+        <view style='display:flex;'>
+          <view style='width:80%;position:relative;'>
+            <image mode="widthFix" style='width:42rpx;position:absolute;left:30rpx;top:0;bottom:0;margin:auto;' src="/img/laba.png"></image>
+            <view style='color:#393945;font-size:13px;line-height:80rpx;text-align:left;padding-left:90rpx;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;'>{{item.messTitle}}</view>
+          </view>
+          <view style='width:20%;padding-right:30rpx;position:relative;'>
+            <view style='color:#656F8E;font-size:13px;line-height:80rpx;text-align:right;padding-right:30rpx;'>前往</view>
+            <image style='width:12rpx;height:20rpx;position:absolute;right:30rpx;top:0;bottom:0;margin:auto;' src="/img/btn_right.png"></image>
+          </view>
+        </view>
+      
+    </swiper-item>
+  </block>
+</swiper>
+</view>

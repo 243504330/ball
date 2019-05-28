@@ -1,0 +1,33 @@
+@import "/css/pub.wxss";
+page{
+  background: #f9f9f9;
+}
+.pt-box{
+  display:flex;text-align:center;
+}
+.w-33{
+  width:33.33%;
+}
+.pt-img{
+  width:44rpx;height:44rpx;
+}
+.pt-font{
+  font-size:26rpx;color:#393945;padding-top:10rpx;
+}
+.tpx{
+  margin-left:-20rpx;
+}
+button{
+  background: #02C160;
+  color:#ffffff;
+  border:none;
+}
+button::after {
+  border: none;
+}
+.button-hover{
+  color:rgba(255, 255, 255, 0.8);
+  background-color:rgba(0, 0, 0, 0);
+  border:none;
+  color:#000000;
+}
