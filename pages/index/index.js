@@ -263,6 +263,13 @@ Page({
       })
     }
 
+    if(opt.type == 'order'){
+      var id = opt.id;
+      wx.navigateTo({
+        url: '../order-detail/order-detail?id=' + id
+      })
+    }
+
     if(share_page == 'detail'){
       var share_id = opt.id;
       var share_type = opt.type;

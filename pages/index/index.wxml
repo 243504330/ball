@@ -49,7 +49,9 @@
             <view style='color:#393945;padding-top:10rpx;font-weight:600;'>
                 
                 <span wx:if="{{item.distance == ''}}">--</span>
-                <span wx:else>{{item.distance}}m</span>
+                <span wx:else>
+                  <span>{{item.distanceDes}}</span>
+                </span>
             </view>
           </view>
          <view style='width:50%;padding-top:30rpx;'>
