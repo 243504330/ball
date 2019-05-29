@@ -174,7 +174,11 @@ Page({
         }
       },
       fail(err) {
-        console.log(err)
+        wx.showToast({
+          title: '定位失败',
+          icon: 'none',
+          duration: 2000
+        })
       }
     })
   },

@@ -14,6 +14,17 @@ Page({
     lockList:'',
     userId:''
   },
+  mapOpen: function (e) {
+    var info = this.data.info;
+    var latitude = parseFloat(info.latitude);
+    var longitude = parseFloat(info.longitude);
+    var that = this
+    wx.openLocation({
+      latitude: latitude,
+      longitude: longitude,
+      scale: 18
+    })
+  },
   userInfo:function(){
     this.setData({
       userInfo:'block'
@@ -182,11 +193,9 @@ Page({
           time = time.split('  ');
           var images = res.data.object.photo;
           var lockNum = parseFloat(res.data.object.lockSize);
-          console.log(lockNum)
           var lockList = [];
           var imageList = [];
           lockList.push(images[0])
-          console.log(lockNum)
           for (var i = 0; i < lockNum;i++){
             var ix = i
             console.log(i)
@@ -198,7 +207,6 @@ Page({
           for (var i = 1; i < images.length;i++){
             lockList.push(images[i])
           }
-          console.log(lockList)
           var orderTime = res.data.object.orderTime;
           var time = new Date(orderTime);
           var y = time.getFullYear();

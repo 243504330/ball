@@ -19,6 +19,17 @@ Page({
     clickInfo:'',
     showType:'success'
   },
+  mapOpen: function (e) {
+    var info = this.data.info;
+    var latitude = parseFloat(info.latitude);
+    var longitude = parseFloat(info.longitude);
+    var that = this
+    wx.openLocation({
+      latitude: latitude,
+      longitude: longitude,
+      scale: 18
+    })
+  },
   getBack:function(){
     this.aniSuccess();
     wx.navigateBack();

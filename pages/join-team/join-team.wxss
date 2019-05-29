@@ -17,6 +17,9 @@ page{
 .line-right{
   text-align:right;width:70%;color:#393945;
 }
+.get-back{
+  width:50%;border-radius:100rpx;font-size:28rpx;margin-top:20rpx;background: #FF7171;box-shadow: 0 3px 5px 0 rgba(255,113,113,0.30);
+}
 button{
   background: #FF7171;
   box-shadow: 0 6px 10px 0 rgba(255,113,113,0.30);

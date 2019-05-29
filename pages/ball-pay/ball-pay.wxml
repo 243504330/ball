@@ -1,3 +1,13 @@
+<view  bindtap='guanbi' style='position:fixed;background:rgba(0,0,0,0.50);z-index:9999;width:100%;height:100%;display:{{success}};margin-top:-20rpx;'>
+</view>
+  <view animation="{{animationData}}" style='position:fixed;width:70%;height:380rpx;top:0;bottom:0;left:0;right:0;margin:auto;background:#ffffff;border-radius:8rpx;z-index:99999;display:{{success}};text-align:center;'>
+      <view style='font-size:36rpx;font-weight:600;color:#333333;padding-top:40rpx;padding-bottom:30rpx;'>提示</view>
+      <view style='font-size:30rpx;color:#666666;font-weight:600;padding-bottom:40rpx;padding-left:40rpx;padding-right:40rpx;'>您是否确认预订{{info.day}}周{{info.week}}<span style="padding-left:10rpx;">{{info.time}}</span>场次</view>
+      <form bindsubmit="formSubmit" report-submit bindreset="formReset">
+        <button class="get-back"  form-type='submit' hover-class="other-button-hover">确认预定</button>
+      </form>
+    </view>
+
 <view style='position:absolute;width:100%;height:200px;background:linear-gradient(#262634, #ffffff);z-index:-1;margin-top:-20px;'>
   
 </view>
@@ -197,9 +207,9 @@
   </view>
 <view style='margin-top:80rpx;'>
   <view style=''>
-    <form bindsubmit="formSubmit" report-submit bindreset="formReset">
-      <button  form-type='submit' class="yao" style='width:75%;border-radius:100rpx;font-size:32rpx;margin-top:20rpx;' hover-class="other-button-hover">微信支付</button>
-    </form>
+    
+      <button bindtap='readyPay' class="yao" style='width:75%;border-radius:100rpx;font-size:32rpx;margin-top:20rpx;' hover-class="other-button-hover">微信支付</button>
+
   </view>
 </view>
 <view style='color:#f9f9f9;padding-top:40rpx;'>

@@ -103,9 +103,17 @@ Page({
     })
   },
   userData:function(){
-    wx.navigateTo({
-      url: '../user-data/user-data',
-    })
+    var id = this.data.userInfo.id;
+    var type = 'edit';
+    if(!id){
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }else{
+      wx.navigateTo({
+        url: '../user-data/user-data?type=' + type + '&id=' + id,
+      })
+    }
   },
   onShareAppMessage() {
     return {

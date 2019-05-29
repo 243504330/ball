@@ -4,19 +4,19 @@
 </view>
 <view style='position:relative;'>
   <view style='position:absolute;margin-top:-100rpx;padding-left:40rpx;'>
-    <image wx:if="{{userInfo.photo}}" style='width:130rpx;height:130rpx;border-radius:100rpx;border:3px solid rgba(232,232,232,0.50);box-shadow:0 5px 10px 0 rgba(0,0,0,0.10);' src="{{pub_url}}{{userInfo.photo}}"></image>
+    <image bindtap='userData' wx:if="{{userInfo.photo}}" style='width:130rpx;height:130rpx;border-radius:100rpx;border:3px solid rgba(232,232,232,0.50);box-shadow:0 5px 10px 0 rgba(0,0,0,0.10);position:absolute;z-index:999999;' src="{{pub_url}}{{userInfo.photo}}"></image>
     <image wx:else bindtap='login' style='position:absolute;width:140rpx;height:140rpx;border-radius:100rpx;z-index:9999;box-shadow:0 5px 10px 0 rgba(0,0,0,0.10);' src="/img/emp_peo.png"></image>
   </view>
 
   <view style='position:absolute;margin-top:-80rpx;padding-left:210rpx;color:#ffffff;'>
     <span wx:if="{{userInfo == ''}}" style="font-size:36rpx;" bindtap='login'>未登录</span>
-    <span wx:else style="font-size:36rpx;">{{userInfo.nickName}}</span>
+    <span bindtap='userData' wx:else style="font-size:36rpx;">{{userInfo.nickName}}</span>
     <image wx:if="{{userInfo.gender == 'B'}}" style='width:30rpx;height:30rpx;padding-left:20rpx;' src="/img/boy.png"></image>
     <image wx:if="{{userInfo.gender == 'G'}}" style='width:30rpx;height:30rpx;padding-left:20rpx;' src="/img/girl.png"></image>
   </view>
 </view>
 <view style='margin-top:80rpx;margin-left:30rpx;margin-right:30rpx;'>
-  <view style='background:#ffffff;border-radius:16rpx;box-shadow:0 5px 10px 0 rgba(0,0,0,0.10);padding-top:50rpx;padding-bottom:50rpx;'>
+  <view bindtap='userData' style='background:#ffffff;border-radius:16rpx;box-shadow:0 5px 10px 0 rgba(0,0,0,0.10);padding-top:50rpx;padding-bottom:50rpx;'>
     <view class='pt-box'>
       <view class='w-33'>
         <view>
@@ -78,7 +78,7 @@
   </view>
 </view>
 <view>
-  <view  style='background:#ffffff;border-radius:16rpx;box-shadow:0 5px 10px 0 rgba(0,0,0,0.10);padding:40rpx  30rpx;margin-top:30rpx;margin-left:30rpx;margin-right:30rpx;'>
+  <view style='background:#ffffff;border-radius:16rpx;box-shadow:0 5px 10px 0 rgba(0,0,0,0.10);padding:40rpx  30rpx;margin-top:30rpx;margin-left:30rpx;margin-right:30rpx;'>
     <view bindtap='goGroup' style='display:flex;'>
       <view style='width:50%;position:relative;'>
         <image style='width:36rpx;height:42rpx;position:absolute;top:0;bottom:0;margin:auto;' src="/img/order.png"></image>

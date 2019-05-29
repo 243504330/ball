@@ -23,6 +23,7 @@ Page({
     data_provinceId: 1,
     data_cityId: 1,
     data_areaId: 1,
+    type:''
   },
   checkParam:function(){
     var sex = this.data.sex;
@@ -109,7 +110,7 @@ Page({
     this.checkParam();
   },
   weizhiClick: function () {
-    var list = ['大前锋','小前锋','控球后卫','得分后卫','中锋'];
+    var list = ['大前锋','小前锋','控球后卫','得分后卫','中锋','不好说'];
     var that = this;
     wx.showActionSheet({
       itemList: list,
@@ -127,6 +128,81 @@ Page({
       }
     })
 
+  },
+  loadUserData: function () {
+    var that = this;
+    var pub_url = this.data.pub_url;
+    wx.getStorage({
+      key: 'user_data',
+      success(res) {
+        var json = JSON.parse(res.data);
+        that.setData({
+          userInfo: json
+        })
+
+        var data = {
+          userId: json.id,
+          terminal: 'ios'
+        }
+        wx.showLoading({
+          title: '加载中',
+        })
+        wx.request({
+          url: pub_url + '/streetball/userInfo/getUserInfo',
+          data: data,
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            console.log(res)
+
+            if (res.data.retCode == '000') {
+
+              var datas = res.data.object;
+              wx.hideLoading()
+
+              that.setData({
+                shengao:datas.height,
+                age:datas.age,
+                tizhong:datas.weight,
+                level:datas.level,
+                weizhi:datas.position,
+                zhouqi:datas.frequency,
+                sex:datas.gender
+              })
+              // userId: userId,
+              // height: this.data.shengao,
+              // age: this.data.age,
+              // weight: this.data.tizhong,
+              // provinceId: this.data.data_provinceId,
+              // cityId: this.data.data_cityId,
+              // areaId: this.data.data_areaId,
+              // level: this.data.level,
+              // position: this.data.weizhi,
+              // frequency: this.data.zhouqi,
+              // terminal: 'ios',
+              // gender: this.data.sex
+            } else {
+              wx.showToast({
+                title: res.data.rtnMsg,
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          },
+          fail(error) {
+            wx.showToast({
+              title: '网络无法连接，请稍后重试！',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        })
+      },
+      fail(err) {
+        wx.hideLoading()
+      }
+    })
   },
   levelClick: function () {
     var list = ['小白', '专精', '精英'];
@@ -258,211 +334,58 @@ Page({
     })
   },
   bindChange:function(e){
-    console.log(e)
-    var pIndex = e.detail.value[0];
-    var cIndex = e.detail.value[1];
-    
-    this.setData({
-      arr:e.detail.value
-    })
-
-
-    var sheng = this.data.sheng;
-    var provinceId = sheng[pIndex].provinceId;
-    this.setData({
-      provinceId:provinceId
-    })
-    this.loadShi();
-    var that = this;
-    setTimeout(function(){
-      var shi = that.data.shi;
-      var cityId = shi[cIndex].cityId;
-      that.setData({
-        citiesId: cityId
-      })
-      console.log(cityId)
-      that.loadQu();
-    },500)
 
   },
   onShow:function(){
     var pub_url = this.data.pub_url;
     var that = this;
 
-    wx.getSetting({
-      success(res) {
-        console.log(res)
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success(res) {
-              console.log(res)
-              var gender = res.userInfo.gender;
-              if (gender == 1) {
-                var sex = 'B'
-              } else {
-                var sex = 'G'
+    var userId = this.data.userId;
+    if(!userId){
+      wx.getSetting({
+        success(res) {
+          console.log(res)
+          if (res.authSetting['scope.userInfo']) {
+            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+            wx.getUserInfo({
+              success(res) {
+                console.log(res)
+                var gender = res.userInfo.gender;
+                if (gender == 1) {
+                  var sex = 'B'
+                } else {
+                  var sex = 'G'
+                }
+                that.setData({
+                  sex: sex,
+                })
               }
-              that.setData({
-                sex: sex,
-              })
-            }
-          })
-        } else {
+            })
+          } else {
+          }
+        },
+        fail(err) {
+          console.log(err)
         }
-      },
-      fail(err) {
-        console.log(err)
-      }
-    })
-
-    // wx.request({
-    //   url: pub_url + '/streetball/user/findProvinces',
-    //   data: {
-    //     provinceId:'',
-    //     terminal:'ios'
-    //   },
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success(res) {
-    //     console.log(res)
-
-    //     if (res.data.retCode == '000') {
-    //       that.setData({
-    //         sheng:res.data.data,
-    //         provinceId: res.data.data[0].provinceId
-    //       })
-    //       var provinceId = that.data.provinceId;
-    //       wx.request({
-    //         url: pub_url + '/streetball/user/findCities',
-    //         data: {
-    //           cityId: '',
-    //           provinceId: provinceId,
-    //           terminal: 'ios'
-    //         },
-    //         header: {
-    //           'content-type': 'application/json' // 默认值
-    //         },
-    //         success(res) {
-    //           console.log(res)
-
-    //           if (res.data.retCode == '000') {
-    //             that.setData({
-    //               shi: res.data.data,
-    //               citiesId: res.data.data[0].cityId
-    //             })
-    //             var citiesId = that.data.citiesId;
-    //             wx.request({
-    //               url: pub_url + '/streetball/user/findAreas',
-    //               data: {
-    //                 areaId: '',
-    //                 cityId: citiesId,
-    //                 terminal: 'ios'
-    //               },
-    //               header: {
-    //                 'content-type': 'application/json' // 默认值
-    //               },
-    //               success(res) {
-    //                 console.log(res)
-
-    //                 if (res.data.retCode == '000') {
-    //                   that.setData({
-    //                     qu: res.data.data
-    //                   })
-    //                 } else {
-
-    //                 }
-    //               },
-    //               fail(error) {
-    //                 console.log(error)
-    //               }
-    //             })
-    //           } else {
-
-    //           }
-    //         },
-    //         fail(error) {
-    //           console.log(error)
-    //         }
-    //       })
-    //     } else {
-
-    //     }
-    //   },
-    //   fail(error) {
-    //     console.log(error)
-    //   }
-    // })
+      })
+    }else{
+      this.loadUserData()
+    }
   },
   loadQu:function(){
-    var pub_url = this.data.pub_url;
-    var that = this;
-    var citiesId = this.data.citiesId;
-    console.log(citiesId)
-    wx.request({
-      url: pub_url + '/streetball/user/findAreas',
-      data: {
-        areaId: '',
-        cityId: citiesId,
-        terminal: 'ios'
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        console.log(res)
 
-        if (res.data.retCode == '000') {
-          that.setData({
-            qu: res.data.data
-          })
-        } else {
-
-        }
-      },
-      fail(error) {
-        console.log(error)
-      }
-    })
   },
   loadShi:function(){
-    var pub_url = this.data.pub_url;
-    var that = this;
-    var provinceId = this.data.provinceId;
-    wx.request({
-      url: pub_url + '/streetball/user/findCities',
-      data: {
-        cityId: '',
-        provinceId: provinceId,
-        terminal: 'ios'
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        console.log(res)
 
-        if (res.data.retCode == '000') {
-          that.setData({
-            shi:res.data.data,
-            citiesId: res.data.data[0].cityId
-          })
-        } else {
-
-        }
-      },
-      fail(error) {
-        console.log(error)
-      }
-    })
   },
   onLoad: function (opt) {
     var that = this;
+    console.log(opt)
     var pub_url = getApp().globalData.url;
     this.setData({
       pub_url: pub_url,
-      userId:opt.id
+      userId:opt.id,
+      type:opt.type
     })
   }
 })

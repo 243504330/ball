@@ -10,7 +10,54 @@ Page({
     openId:'',
     lockType:'',
     success:'none',
-    animationData:''
+    animationData:'',
+    succType:'none',
+    animationSuc:''
+  },
+  readyPay:function(){
+    this.aas();
+  },
+  guanbi:function(){
+    this.aas();
+  },
+  aas:function(){
+    const animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease'
+    })
+    const animation2 = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease'
+    })
+    var menusFlag = this.data.succType;
+    var begin = 0;
+    var end = 0;
+    var flag = '';
+    if (menusFlag == 'block') {
+      begin = 0;
+      end = -220;
+      flag = 'none';
+    } else {
+      begin = -220;
+      end = 0;
+      flag = 'block';
+    }
+    animation.scale(0.1, 0.1).step({ duration: 500 })
+
+    this.setData({
+      animationSuc: animation.export()
+    })
+    var that = this
+    setTimeout(function () {
+      that.setData({
+        succType: flag
+      })
+      animation.scale(1, 1).step({ duration: 500 })
+
+      that.setData({
+        animationSuc: animation.export()
+      })
+    }, 200)
   },
   aniSuccess: function () {
     const animation = wx.createAnimation({
@@ -88,10 +135,8 @@ Page({
       }
     })
   },
-  goGroup:function(){
-
-  },
   formSubmit: function (opt){
+    this.aas();
     var that = this;
     var pub_url = this.data.pub_url;
     var info = this.data.info;
@@ -112,7 +157,6 @@ Page({
       lockShare: lockShare
     }
 
-    console.log(data)
     wx.showLoading({
       title: '加载中',
     })

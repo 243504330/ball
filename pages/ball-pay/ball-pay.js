@@ -18,7 +18,53 @@ Page({
     freeType:'',
     openId:'',
     lock2:false,
-    lock1:false
+    lock1:false,
+    success:'none'
+  },
+  guanbi:function(){
+    this.aniSuccess();
+  },
+  readyPay:function(){
+    this.aniSuccess();
+  },
+  aniSuccess: function () {
+    const animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease'
+    })
+    const animation2 = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease'
+    })
+    var menusFlag = this.data.success;
+    var begin = 0;
+    var end = 0;
+    var flag = '';
+    if (menusFlag == 'block') {
+      begin = 0;
+      end = -220;
+      flag = 'none';
+    } else {
+      begin = -220;
+      end = 0;
+      flag = 'block';
+    }
+    animation.scale(0.1, 0.1).step({ duration: 500 })
+
+    this.setData({
+      animationData: animation.export()
+    })
+    var that = this
+    setTimeout(function () {
+      that.setData({
+        success: flag
+      })
+      animation.scale(1, 1).step({ duration: 500 })
+
+      that.setData({
+        animationData: animation.export()
+      })
+    }, 200)
   },
   unlock:function(e){
     var id = e.currentTarget.id;
@@ -168,7 +214,7 @@ Page({
   },
 
   formSubmit:function(opt){
-
+    this.aniSuccess();
     var type = this.data.type;
     var freeType = '';
     if(type != 'pin'){
